@@ -24,24 +24,6 @@ const aiChatWindow = document.querySelector("#aiChatWindow");
 const aiQuestionInput = document.querySelector("#aiQuestion");
 const suggestionButtons = document.querySelectorAll(".ai-suggestions button");
 
-const previewReply = (question) => {
-  const lower = question.toLowerCase();
-
-  if (lower.includes("longji")) {
-    return "Longji Rice Terraces can be worth it if you like mountain villages, rice fields, and slow views. For a first Guilin trip, I would check your season, walking comfort, and whether you have enough time before adding it.";
-  }
-
-  if (lower.includes("li river") || lower.includes("yangshuo")) {
-    return "For many first-time visitors, the easiest plan is Guilin city first, then a Li River cruise or transfer toward Yangshuo, then one slower countryside day around the Yulong River.";
-  }
-
-  if (lower.includes("3 days") || lower.includes("three days")) {
-    return "For 3 days, I would usually suggest: Day 1 Guilin city, Day 2 Li River to Yangshuo, Day 3 Yangshuo countryside. The exact plan depends on your arrival and departure times.";
-  }
-
-  return "This is a preview response. In the real version, Hermes Agent would answer only Guilin travel questions and guide visitors toward practical route, transport, food, hotel, and inquiry help.";
-};
-
 const addAiMessage = (text, type) => {
   if (!aiChatWindow) return;
   const message = document.createElement("div");
@@ -49,16 +31,50 @@ const addAiMessage = (text, type) => {
   message.textContent = text;
   aiChatWindow.appendChild(message);
   aiChatWindow.scrollTop = aiChatWindow.scrollHeight;
+  return message;
 };
 
-aiChatForm?.addEventListener("submit", (event) => {
+aiChatForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
   const question = aiQuestionInput?.value.trim();
   if (!question) return;
 
   addAiMessage(question, "user");
   aiQuestionInput.value = "";
-  window.setTimeout(() => addAiMessage(previewReply(question), "agent"), 350);
+  const submitButton = aiChatForm.querySelector('button[type="submit"]');
+  const thinkingMessage = addAiMessage("Thinking about your Guilin trip...", "agent pending");
+  aiQuestionInput.disabled = true;
+  submitButton.disabled = true;
+
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 125000);
+
+  try {
+    const response = await fetch("/.netlify/functions/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: question }),
+      signal: controller.signal,
+    });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok || !payload.answer) {
+      throw new Error(payload.error || "assistant_unavailable");
+    }
+    thinkingMessage.textContent = payload.answer;
+    thinkingMessage.classList.remove("pending");
+  } catch (error) {
+    thinkingMessage.textContent =
+      error.name === "AbortError"
+        ? "The answer is taking too long. Please try again in a moment."
+        : "The AI guide is temporarily unavailable. Please try again shortly or email guilinway@outlook.com.";
+    thinkingMessage.classList.remove("pending");
+    thinkingMessage.classList.add("error");
+  } finally {
+    window.clearTimeout(timeout);
+    aiQuestionInput.disabled = false;
+    submitButton.disabled = false;
+    aiQuestionInput.focus();
+  }
 });
 
 suggestionButtons.forEach((button) => {
