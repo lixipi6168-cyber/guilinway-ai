@@ -1,0 +1,283 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guilin Way | Your AI Guide to Guilin</title>
+    <meta
+      name="description"
+      content="Guilin Way is your AI guide to Guilin, Yangshuo, the Li River, and Longji Rice Terraces. Ask questions, plan routes, and explore Guilin the easy way."
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header" aria-label="Site header">
+      <a class="brand" href="#top" aria-label="Guilin Way home">
+        <span class="brand-mark">G</span>
+        <span>Guilin Way</span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#guide">AI Guide</a>
+        <a href="#ai-preview">Hermes Preview</a>
+        <a href="#routes">Routes</a>
+        <a href="#plan">Trip Plan</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <img class="hero-image" src="assets/guilin-hero.png" alt="Misty Li River landscape with karst mountains near Guilin">
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Your AI guide to Guilin</p>
+          <h1>The easiest way to explore Guilin.</h1>
+          <p class="hero-copy">
+            Ask about Guilin, Yangshuo, the Li River, Longji Rice Terraces, local food,
+            hotels, transport, and simple routes before you arrive.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#ai-preview">Ask AI Guide</a>
+            <a class="button secondary" href="#routes">Explore routes</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="quick-info" aria-label="Guilin Way quick facts">
+        <div>
+          <span class="stat">AI</span>
+          <span>Simple travel answers</span>
+        </div>
+        <div>
+          <span class="stat">GLN</span>
+          <span>Guilin, Yangshuo, Longji</span>
+        </div>
+        <div>
+          <span class="stat">EN</span>
+          <span>Built for overseas visitors</span>
+        </div>
+        <div>
+          <span class="stat">GO</span>
+          <span>Plan, ask, and inquire</span>
+        </div>
+      </section>
+
+      <section id="guide" class="section intro">
+        <div class="section-heading">
+          <p class="eyebrow">Make Guilin Easy</p>
+          <h2>Plan your Guilin trip without guessing what to trust.</h2>
+        </div>
+        <p>
+          Guilin Way helps foreign travelers understand how to explore Guilin in a simple way.
+          Use it to ask practical questions, compare routes, understand transport, discover local food,
+          and turn scattered travel advice into a clear plan.
+        </p>
+      </section>
+
+
+      <section id="ai-preview" class="section ai-preview-section">
+        <div class="section-heading">
+          <p class="eyebrow">Hermes Agent Preview</p>
+          <h2>Ask one practical Guilin question before you travel.</h2>
+        </div>
+        <div class="ai-preview-layout">
+          <div class="ai-copy">
+            <p>
+              This preview shows how Hermes Agent could appear on Guilin Way. It is designed as
+              a focused travel helper, not a general chatbot, so visitors are guided toward
+              Guilin, Yangshuo, the Li River, Longji Rice Terraces, transport, food, and itinerary questions.
+            </p>
+            <div class="ai-suggestions" aria-label="Suggested questions">
+              <button type="button" data-question="I have 3 days in Guilin. Should I stay in Guilin or Yangshuo?">3 days in Guilin</button>
+              <button type="button" data-question="What is the easiest way to visit the Li River and Yangshuo?">Li River route</button>
+              <button type="button" data-question="Is Longji Rice Terraces worth visiting for a first trip?">Longji advice</button>
+            </div>
+          </div>
+          <div class="ai-chat-card" aria-label="Hermes Agent preview chat">
+            <div class="ai-chat-header">
+              <span class="ai-status" aria-hidden="true"></span>
+              <div>
+                <h3>Guilin Way AI Guide</h3>
+                <p>Ask practical questions about Guilin travel.</p>
+              </div>
+            </div>
+            <div class="ai-chat-window" id="aiChatWindow">
+              <div class="ai-message agent">
+                Hi, I am Guilin Way. Tell me your travel dates, interests, and group size, and I will help you plan an easy Guilin trip.
+              </div>
+              <div class="ai-message user">
+                I have 3 days. I want to see Guilin, Yangshuo, and the Li River.
+              </div>
+              <div class="ai-message agent">
+                A simple first route could be: Day 1 Guilin city, Day 2 Li River to Yangshuo, Day 3 Yulong River countryside. I would ask your arrival time before making it more exact.
+              </div>
+            </div>
+            <form class="ai-chat-form" id="aiChatForm">
+              <label class="sr-only" for="aiQuestion">Ask Guilin Way AI Guide</label>
+              <input id="aiQuestion" name="question" placeholder="Ask about Guilin, Yangshuo, Li River..." autocomplete="off">
+              <button class="button primary" type="submit">Ask</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <section id="routes" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">What travelers ask first</p>
+          <h2>Start with the places most visitors care about.</h2>
+        </div>
+        <div class="tour-grid">
+          <article class="tour-card">
+            <div class="tour-meta">
+              <span>Classic</span>
+              <span>Guilin + Yangshuo</span>
+            </div>
+            <h3>Li River & Yangshuo</h3>
+            <p>
+              Understand whether to take a Li River cruise, how to reach Yangshuo, where to stay,
+              and how to add countryside time without making the day too rushed.
+            </p>
+            <ul>
+              <li>Best for first-time visitors</li>
+              <li>Route, timing, and transport help</li>
+              <li>Can include shows, food, or viewpoints</li>
+            </ul>
+          </article>
+
+          <article class="tour-card featured">
+            <div class="tour-meta">
+              <span>Slow travel</span>
+              <span>Yangshuo</span>
+            </div>
+            <h3>Yulong River Countryside</h3>
+            <p>
+              Learn how to plan a relaxed Yangshuo day with bamboo rafting, village roads,
+              rice fields, Moon Hill views, cafes, and easy local meals.
+            </p>
+            <ul>
+              <li>Great for couples and photographers</li>
+              <li>Bike, e-bike, car, or walking versions</li>
+              <li>Flexible advice based on weather</li>
+            </ul>
+          </article>
+
+          <article class="tour-card">
+            <div class="tour-meta">
+              <span>Mountain villages</span>
+              <span>Longji</span>
+            </div>
+            <h3>Longji Rice Terraces</h3>
+            <p>
+              Decide if Longji is worth your time, which village to choose, how much walking is involved,
+              and whether it fits your Guilin or Yangshuo itinerary.
+            </p>
+            <ul>
+              <li>Best from spring to autumn</li>
+              <li>Useful for hikers and photographers</li>
+              <li>Helps compare Ping'an and Dazhai</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="plan" class="section itinerary">
+        <div class="section-heading">
+          <p class="eyebrow">Simple planning flow</p>
+          <h2>Turn a broad idea into a practical Guilin plan.</h2>
+        </div>
+        <div class="timeline">
+          <div>
+            <span>Step 1</span>
+            <h3>Tell us your trip basics</h3>
+            <p>Share your travel dates, group size, arrival city, interests, and whether you prefer easy or active days.</p>
+          </div>
+          <div>
+            <span>Step 2</span>
+            <h3>Ask what you are unsure about</h3>
+            <p>Compare Guilin vs. Yangshuo, Li River cruise options, Longji timing, food, hotels, and transport choices.</p>
+          </div>
+          <div>
+            <span>Step 3</span>
+            <h3>Build an easy route</h3>
+            <p>Use the answers to shape a route, then send an inquiry when you need local help, booking support, or a custom plan.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="why" class="section split">
+        <div class="section-heading">
+          <p class="eyebrow">Why Guilin Way</p>
+          <h2>Local travel questions deserve clear, practical answers.</h2>
+        </div>
+        <div class="benefits">
+          <div>
+            <h3>Not just another list of attractions</h3>
+            <p>Guilin Way focuses on what visitors actually need to decide before and during the trip.</p>
+          </div>
+          <div>
+            <h3>AI is the tool, not the point</h3>
+            <p>The goal is to make Guilin easier to understand, not to make travel planning feel technical.</p>
+          </div>
+          <div>
+            <h3>Made for overseas travelers</h3>
+            <p>Answers are shaped for visitors who may not know Chinese apps, local transport, or reliable route timing.</p>
+          </div>
+          <div>
+            <h3>From questions to real help</h3>
+            <p>Start with simple answers, then move toward inquiry, booking support, or a tailored local plan when needed.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact-section">
+        <div class="section-heading">
+          <p class="eyebrow">Start with one question</p>
+          <h2>Ask Guilin Way about your trip.</h2>
+        </div>
+        <div class="contact-layout">
+          <form class="inquiry-form" id="inquiryForm">
+            <label>
+              Name
+              <input name="name" autocomplete="name" placeholder="Your name">
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" autocomplete="email" placeholder="you@example.com">
+            </label>
+            <label>
+              Travel date
+              <input name="date" type="date">
+            </label>
+            <label>
+              Topic
+              <select name="route">
+                <option>How many days should I spend in Guilin?</option>
+                <option>Guilin or Yangshuo: where should I stay?</option>
+                <option>Best way to visit the Li River</option>
+                <option>Is Longji Rice Terraces worth visiting?</option>
+                <option>Custom Guilin travel question</option>
+              </select>
+            </label>
+            <label class="wide">
+              Question
+              <textarea name="message" rows="5" placeholder="Tell us your travel dates, group size, arrival city, interests, and what you are unsure about."></textarea>
+            </label>
+            <button class="button primary" type="submit">Prepare travel question</button>
+          </form>
+          <aside class="contact-panel">
+            <h3>Direct contact</h3>
+            <p>Guilin Way is still in its MVP stage. Email us your question, route idea, or booking request, and we will use it to improve the AI guide and travel planning service.</p>
+            <a class="contact-link" href="mailto:guilinway@outlook.com?subject=Guilin%20Way%20Travel%20Question">guilinway@outlook.com</a>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <a class="floating-ai-button" href="#ai-preview" aria-label="Ask Guilin Way AI Guide">Ask AI</a>
+
+    <footer class="site-footer">
+      <p>Guilin Way. The easiest way to explore Guilin.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
