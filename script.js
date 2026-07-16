@@ -24,13 +24,20 @@ const aiChatWindow = document.querySelector("#aiChatWindow");
 const aiQuestionInput = document.querySelector("#aiQuestion");
 const suggestionButtons = document.querySelectorAll(".ai-suggestions button");
 
+const scrollAiToBottom = () => {
+  if (!aiChatWindow) return;
+  window.requestAnimationFrame(() => {
+    aiChatWindow.scrollTop = aiChatWindow.scrollHeight;
+  });
+};
+
 const addAiMessage = (text, type) => {
   if (!aiChatWindow) return;
   const message = document.createElement("div");
   message.className = `ai-message ${type}`;
   message.textContent = text;
   aiChatWindow.appendChild(message);
-  aiChatWindow.scrollTop = aiChatWindow.scrollHeight;
+  scrollAiToBottom();
   return message;
 };
 
@@ -73,6 +80,7 @@ aiChatForm?.addEventListener("submit", async (event) => {
     window.clearTimeout(timeout);
     aiQuestionInput.disabled = false;
     submitButton.disabled = false;
+    scrollAiToBottom();
     aiQuestionInput.focus();
   }
 });
