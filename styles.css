@@ -586,6 +586,22 @@ textarea {
   background: var(--river);
 }
 
+.ai-message.pending {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.ai-message.error {
+  color: #8b2f2f;
+  background: #fff3f1;
+}
+
+.ai-chat-form input:disabled,
+.ai-chat-form button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
 .ai-chat-form {
   display: grid;
   grid-template-columns: 1fr auto;

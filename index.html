@@ -77,14 +77,13 @@
 
       <section id="ai-preview" class="section ai-preview-section">
         <div class="section-heading">
-          <p class="eyebrow">Hermes Agent Preview</p>
+          <p class="eyebrow">Guilin Way AI Guide</p>
           <h2>Ask one practical Guilin question before you travel.</h2>
         </div>
         <div class="ai-preview-layout">
           <div class="ai-copy">
             <p>
-              This preview shows how Hermes Agent could appear on Guilin Way. It is designed as
-              a focused travel helper, not a general chatbot, so visitors are guided toward
+              Ask our focused travel helper for practical guidance about
               Guilin, Yangshuo, the Li River, Longji Rice Terraces, transport, food, and itinerary questions.
             </p>
             <div class="ai-suggestions" aria-label="Suggested questions">
@@ -93,7 +92,7 @@
               <button type="button" data-question="Is Longji Rice Terraces worth visiting for a first trip?">Longji advice</button>
             </div>
           </div>
-          <div class="ai-chat-card" aria-label="Hermes Agent preview chat">
+          <div class="ai-chat-card" aria-label="Guilin Way AI Guide chat">
             <div class="ai-chat-header">
               <span class="ai-status" aria-hidden="true"></span>
               <div>
@@ -101,7 +100,7 @@
                 <p>Ask practical questions about Guilin travel.</p>
               </div>
             </div>
-            <div class="ai-chat-window" id="aiChatWindow">
+            <div class="ai-chat-window" id="aiChatWindow" aria-live="polite">
               <div class="ai-message agent">
                 Hi, I am Guilin Way. Tell me your travel dates, interests, and group size, and I will help you plan an easy Guilin trip.
               </div>
@@ -114,7 +113,7 @@
             </div>
             <form class="ai-chat-form" id="aiChatForm">
               <label class="sr-only" for="aiQuestion">Ask Guilin Way AI Guide</label>
-              <input id="aiQuestion" name="question" placeholder="Ask about Guilin, Yangshuo, Li River..." autocomplete="off">
+              <input id="aiQuestion" name="question" maxlength="1200" placeholder="Ask about Guilin, Yangshuo, Li River..." autocomplete="off">
               <button class="button primary" type="submit">Ask</button>
             </form>
           </div>
