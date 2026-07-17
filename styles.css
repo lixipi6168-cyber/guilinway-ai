@@ -230,18 +230,60 @@ h1 {
 }
 
 .tour-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   min-height: 410px;
   padding: 26px;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.32);
   border-radius: 8px;
-  background: var(--surface);
+  background-color: var(--forest);
+  color: #fff;
+  box-shadow: 0 18px 42px rgba(16, 39, 34, 0.14);
+}
+
+.tour-card::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(7, 28, 24, 0.74) 0%,
+      rgba(7, 28, 24, 0.58) 48%,
+      rgba(7, 28, 24, 0.88) 100%
+    ),
+    var(--tour-image);
+  background-position: var(--tour-position, center);
+  background-size: cover;
+  transition: transform 300ms ease;
+}
+
+.tour-card:hover::before {
+  transform: scale(1.025);
+}
+
+.tour-card--li-river {
+  --tour-image: url("assets/li-river-card.jpg");
+  --tour-position: 52% center;
+}
+
+.tour-card--yulong {
+  --tour-image: url("assets/yulong-river-card.jpg");
+  --tour-position: 58% center;
+}
+
+.tour-card--longji {
+  --tour-image: url("assets/longji-terraces-card.jpg");
+  --tour-position: 48% center;
 }
 
 .tour-card.featured {
-  border-color: rgba(30, 111, 133, 0.4);
-  box-shadow: var(--shadow);
+  border-color: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 22px 48px rgba(16, 39, 34, 0.22);
 }
 
 .tour-meta {
@@ -253,11 +295,13 @@ h1 {
 
 .tour-meta span {
   padding: 5px 9px;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 999px;
-  color: var(--muted);
+  background: rgba(7, 28, 24, 0.46);
+  color: #fff;
   font-size: 0.78rem;
   font-weight: 700;
+  backdrop-filter: blur(4px);
 }
 
 .tour-card h3,
@@ -278,9 +322,38 @@ h1 {
   color: var(--muted);
 }
 
+.tour-card h3,
+.tour-card p,
+.tour-card li {
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+}
+
+.tour-card h3 {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.tour-card p,
+.tour-card li {
+  color: #fff;
+  font-size: 0.96rem;
+}
+
 .tour-card ul {
   margin: auto 0 0;
   padding-left: 18px;
+}
+
+.photo-credits {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-align: right;
+}
+
+.photo-credits a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .itinerary {
@@ -466,7 +539,11 @@ textarea {
   }
 
   .tour-card {
-    min-height: auto;
+    min-height: 390px;
+  }
+
+  .photo-credits {
+    text-align: left;
   }
 }
 
