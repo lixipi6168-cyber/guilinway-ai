@@ -17,7 +17,7 @@ inquiryForm?.addEventListener("submit", (event) => {
     ].join("\n")
   );
 
-  window.location.href = `mailto:guilinway@outlook.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:guilinway@gmail.com?subject=${subject}&body=${body}`;
 });
 const aiChatForm = document.querySelector("#aiChatForm");
 const aiChatWindow = document.querySelector("#aiChatWindow");
@@ -73,7 +73,7 @@ aiChatForm?.addEventListener("submit", async (event) => {
     thinkingMessage.textContent =
       error.name === "AbortError"
         ? "The answer is taking too long. Please try again in a moment."
-        : "The AI guide is temporarily unavailable. Please try again shortly or email guilinway@outlook.com.";
+        : "The AI guide is temporarily unavailable. Please try again shortly or email guilinway@gmail.com.";
     thinkingMessage.classList.remove("pending");
     thinkingMessage.classList.add("error");
   } finally {

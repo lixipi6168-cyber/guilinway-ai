@@ -32,7 +32,7 @@ http://127.0.0.1:4173/
 
 ## Current Launch Notes
 
-- Current email contact: `guilinway@outlook.com`.
+- Current email contact: `guilinway@gmail.com`.
 - Website domain: `guilinway.com`.
 - Hosting: Netlify free plan.
 - Next step: connect the Telegram AI bot and replace MVP inquiry flow with a stable visitor question/booking flow.
