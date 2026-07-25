@@ -1,9 +1,23 @@
-﻿const inquiryForm = document.querySelector("#inquiryForm");
+const inquiryForm = document.querySelector("#inquiryForm");
+
+const trackEvent = (eventName, parameters = {}) => {
+  if (typeof window.gtag !== "function") return;
+  window.gtag("event", eventName, parameters);
+};
+
+let contactFormStarted = false;
+
+inquiryForm?.addEventListener("focusin", () => {
+  if (contactFormStarted) return;
+  contactFormStarted = true;
+  trackEvent("contact_form_started");
+});
 
 inquiryForm?.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const data = new FormData(inquiryForm);
+  trackEvent("contact_form_submitted");
   const subject = encodeURIComponent("Guilin Way Travel Question");
   const body = encodeURIComponent(
     [
@@ -23,6 +37,17 @@ const aiChatForm = document.querySelector("#aiChatForm");
 const aiChatWindow = document.querySelector("#aiChatWindow");
 const aiQuestionInput = document.querySelector("#aiQuestion");
 const suggestionButtons = document.querySelectorAll(".ai-suggestions button");
+
+const getQuestionCategory = (question) => {
+  const normalizedQuestion = question.toLowerCase();
+  if (/longji|rice terrace|ping'an|dazhai/.test(normalizedQuestion)) return "longji";
+  if (/li river|cruise/.test(normalizedQuestion)) return "li_river";
+  if (/hotel|stay|accommodation|guilin or yangshuo/.test(normalizedQuestion)) return "accommodation";
+  if (/train|airport|transport|bus|taxi|transfer/.test(normalizedQuestion)) return "transport";
+  if (/food|eat|restaurant|dish/.test(normalizedQuestion)) return "food";
+  if (/day|days|itinerary|route|plan/.test(normalizedQuestion)) return "itinerary";
+  return "other";
+};
 
 const scrollAiToBottom = () => {
   if (!aiChatWindow) return;
@@ -45,7 +70,9 @@ aiChatForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
   const question = aiQuestionInput?.value.trim();
   if (!question) return;
+  const questionCategory = getQuestionCategory(question);
 
+  trackEvent("ai_question_submitted", { question_category: questionCategory });
   addAiMessage(question, "user");
   aiQuestionInput.value = "";
   const submitButton = aiChatForm.querySelector('button[type="submit"]');
@@ -69,13 +96,19 @@ aiChatForm?.addEventListener("submit", async (event) => {
     }
     thinkingMessage.textContent = payload.answer;
     thinkingMessage.classList.remove("pending");
+    trackEvent("ai_answer_received", { question_category: questionCategory });
   } catch (error) {
+    const failureType = error.name === "AbortError" ? "timeout" : "unavailable";
     thinkingMessage.textContent =
       error.name === "AbortError"
         ? "The answer is taking too long. Please try again in a moment."
         : "The AI guide is temporarily unavailable. Please try again shortly or email guilinway@gmail.com.";
     thinkingMessage.classList.remove("pending");
     thinkingMessage.classList.add("error");
+    trackEvent("ai_answer_failed", {
+      question_category: questionCategory,
+      failure_type: failureType,
+    });
   } finally {
     window.clearTimeout(timeout);
     aiQuestionInput.disabled = false;
@@ -88,6 +121,9 @@ aiChatForm?.addEventListener("submit", async (event) => {
 suggestionButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const question = button.dataset.question || button.textContent || "";
+    trackEvent("ai_suggestion_clicked", {
+      question_category: getQuestionCategory(question),
+    });
     if (aiQuestionInput) aiQuestionInput.value = question;
     aiChatForm?.dispatchEvent(new Event("submit", { cancelable: true }));
   });
