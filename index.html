@@ -60,6 +60,10 @@
         <a href="#plan">Trip Plan</a>
         <a href="#contact">Contact</a>
       </nav>
+      <div class="header-auth">
+        <span class="auth-user" id="authUser" hidden></span>
+        <button class="auth-button" id="authButton" type="button">Log in / Sign up</button>
+      </div>
     </header>
 
     <main id="top">
@@ -136,7 +140,6 @@
                 <h3>Guilin Way AI Guide</h3>
                 <p>Ask practical questions about Guilin travel.</p>
               </div>
-              <div class="ai-auth" id="aiAuth"></div>
             </div>
             <div class="ai-chat-window" id="aiChatWindow" aria-live="polite">
               <div class="ai-message agent">
@@ -149,7 +152,7 @@
                 A simple first route could be: Day 1 Guilin city, Day 2 Li River to Yangshuo, Day 3 Yulong River countryside. I would ask your arrival time before making it more exact.
               </div>
             </div>
-            <div class="ai-quota" id="aiQuota" aria-live="polite"></div>
+            <p class="quota-line" id="quotaLine" hidden></p>
             <form class="ai-chat-form" id="aiChatForm">
               <label class="sr-only" for="aiQuestion">Ask Guilin Way AI Guide</label>
               <input id="aiQuestion" name="question" maxlength="1200" placeholder="Ask about Guilin, Yangshuo, Li River..." autocomplete="off">
@@ -273,6 +276,31 @@
         </div>
       </section>
 
+      <section id="members" class="section split">
+        <div class="section-heading">
+          <p class="eyebrow">Free membership</p>
+          <h2>Create a free account to ask more.</h2>
+        </div>
+        <div class="benefits">
+          <div>
+            <h3>More questions every day</h3>
+            <p>Guests can ask 5 questions a day. Free members can ask 30.</p>
+          </div>
+          <div>
+            <h3>Free to join</h3>
+            <p>Sign up with just an email and a password. No payment is needed.</p>
+          </div>
+          <div>
+            <h3>The same practical guide</h3>
+            <p>Members use the same AI guide, just with a higher daily limit.</p>
+          </div>
+          <div>
+            <h3>Simple and private</h3>
+            <p>We only store your email and a securely hashed password.</p>
+          </div>
+        </div>
+      </section>
+
       <section id="contact" class="section contact-section">
         <div class="section-heading">
           <p class="eyebrow">Start with one question</p>
@@ -323,28 +351,27 @@
       <p>Guilin Way. The easiest way to explore Guilin.</p>
     </footer>
 
-    <div class="auth-modal-backdrop" id="authModal" hidden>
-      <div class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
-        <button type="button" class="auth-modal-close" id="authModalClose" aria-label="Close">×</button>
-        <h3 id="authModalTitle">Sign in</h3>
-        <p class="auth-modal-sub" id="authModalSub">Welcome back.</p>
-        <form id="authForm">
+    <div class="auth-modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle" hidden>
+      <div class="auth-card">
+        <button class="auth-close" id="authClose" type="button" aria-label="Close">&times;</button>
+        <h3 id="authTitle">Create your free account</h3>
+        <p>Free members can ask more Guilin questions every day.</p>
+        <form id="authForm" novalidate>
           <label>
             Email
-            <input type="email" id="authEmail" required autocomplete="email">
+            <input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
           </label>
           <label>
             Password
-            <input type="password" id="authPassword" required minlength="8" autocomplete="current-password">
+            <input id="authPassword" type="password" autocomplete="new-password" maxlength="128" placeholder="At least 8 characters" required>
           </label>
-          <p class="auth-error" id="authError" hidden></p>
-          <button class="button primary" type="submit" id="authSubmit">Sign in</button>
+          <p class="auth-error" id="authError" role="alert"></p>
+          <button class="button primary" id="authSubmit" type="submit">Sign up</button>
         </form>
-        <p class="auth-switch">New here? <button type="button" id="authSwitch">Create an account</button></p>
+        <button class="auth-switch" id="authSwitch" type="button">Already a member? Log in</button>
       </div>
     </div>
 
     <script src="script.js"></script>
-    <script src="script-auth.js"></script>
   </body>
 </html>
