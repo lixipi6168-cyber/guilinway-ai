@@ -748,199 +748,48 @@ textarea {
   }
 }
 
-/* ---- Membership auth UI ---- */
-.ai-auth {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-}
-
-.ai-auth-btn {
-  font: inherit;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #fff;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 999px;
-  padding: 8px 16px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.ai-auth-btn:hover {
-  background: rgba(255, 255, 255, 0.14);
-}
-
-.ai-auth-email {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 180px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.ai-quota {
-  margin: 0;
-  padding: 10px 16px 0;
-  font-size: 0.82rem;
-  color: var(--muted);
-  background: var(--surface);
-}
-
-.ai-quota:empty {
-  display: none;
-}
-
-.ai-quota button {
-  font: inherit;
-  font-size: inherit;
-  color: var(--river);
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  text-decoration: underline;
-  font-weight: 700;
-}
-
-.auth-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: rgba(16, 32, 28, 0.55);
-}
-
-.auth-modal-backdrop[hidden] {
-  display: none;
-}
-
-.auth-modal {
-  position: relative;
-  width: min(400px, 100%);
-  padding: 28px 26px 24px;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 24px 60px rgba(23, 33, 31, 0.3);
-}
-
-.auth-modal h3 {
-  margin: 0 0 6px;
-}
-
-.auth-modal-sub {
-  margin: 0 0 18px;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-.auth-modal-close {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  font-size: 1.4rem;
-  line-height: 1;
-  color: var(--muted);
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.auth-modal label {
-  display: block;
-  margin-bottom: 14px;
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-.auth-modal input {
-  display: block;
-  width: 100%;
-  margin-top: 6px;
-  min-height: 44px;
-  padding: 10px 12px;
-  font: inherit;
-  font-weight: 400;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  box-sizing: border-box;
-}
-
-.auth-modal .button {
-  width: 100%;
-}
-
-.auth-error {
-  margin: 0 0 14px;
-  font-size: 0.85rem;
-  color: #8b2f2f;
-}
-
-.auth-switch {
-  margin: 16px 0 0;
-  font-size: 0.85rem;
-  text-align: center;
-  color: var(--muted);
-}
-
-.auth-switch button {
-  font: inherit;
-  color: var(--river);
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-decoration: underline;
-  font-weight: 700;
-}
-
-.ai-nudge-button {
-  font: inherit;
-  font-weight: 700;
-  color: #fff;
-  background: var(--river);
-  border: none;
-  border-radius: 999px;
-  padding: 8px 16px;
-  margin-top: 10px;
-  cursor: pointer;
-}
-
 /* ---- Membership (login / signup) ---- */
 [hidden] { display: none !important; }
 
+.header-auth {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
 .auth-button {
   font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
   color: inherit;
   background: transparent;
   border: 1px solid currentColor;
   border-radius: 999px;
-  padding: 0.35rem 0.9rem;
+  padding: 0.4rem 0.95rem;
+  white-space: nowrap;
   cursor: pointer;
 }
 
 .auth-user {
   display: inline-block;
   max-width: 14rem;
-  margin-right: 0.5rem;
   overflow: hidden;
   font-size: 0.85rem;
-  opacity: 0.8;
+  opacity: 0.85;
   text-overflow: ellipsis;
   vertical-align: middle;
   white-space: nowrap;
 }
 
 .quota-line {
-  margin: 0.5rem 0 0;
-  font-size: 0.9rem;
-  opacity: 0.85;
+  margin: 0;
+  padding: 8px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  background: var(--surface);
+  font-size: 0.85rem;
 }
 
 .auth-modal {
