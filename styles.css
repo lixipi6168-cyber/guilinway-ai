@@ -911,3 +911,105 @@ textarea {
   margin-top: 10px;
   cursor: pointer;
 }
+
+/* ---- Membership (login / signup) ---- */
+[hidden] { display: none !important; }
+
+.auth-button {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+}
+
+.auth-user {
+  display: inline-block;
+  max-width: 14rem;
+  margin-right: 0.5rem;
+  overflow: hidden;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.quota-line {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.auth-card {
+  position: relative;
+  width: 100%;
+  max-width: 24rem;
+  padding: 1.75rem 1.5rem 1.5rem;
+  color: #1c2b2b;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.auth-card h3 { margin: 0 0 0.25rem; font-size: 1.3rem; }
+.auth-card p { margin: 0 0 1rem; font-size: 0.9rem; opacity: 0.8; }
+.auth-card label { display: block; margin-bottom: 0.9rem; font-size: 0.9rem; font-weight: 600; }
+
+.auth-card input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 0.3rem;
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+  border: 1px solid #b9c4c4;
+  border-radius: 8px;
+}
+
+.auth-card .button { width: 100%; }
+
+.auth-error {
+  min-height: 1.2rem;
+  margin: 0 0 0.6rem;
+  color: #b3261e;
+  font-size: 0.9rem;
+}
+
+.auth-switch {
+  display: block;
+  margin: 0.9rem auto 0;
+  padding: 0;
+  color: #1f6f5c;
+  font: inherit;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.auth-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  color: inherit;
+  font-size: 1.6rem;
+  line-height: 1;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
