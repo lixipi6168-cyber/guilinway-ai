@@ -136,6 +136,7 @@
                 <h3>Guilin Way AI Guide</h3>
                 <p>Ask practical questions about Guilin travel.</p>
               </div>
+              <div class="ai-auth" id="aiAuth"></div>
             </div>
             <div class="ai-chat-window" id="aiChatWindow" aria-live="polite">
               <div class="ai-message agent">
@@ -148,6 +149,7 @@
                 A simple first route could be: Day 1 Guilin city, Day 2 Li River to Yangshuo, Day 3 Yulong River countryside. I would ask your arrival time before making it more exact.
               </div>
             </div>
+            <div class="ai-quota" id="aiQuota" aria-live="polite"></div>
             <form class="ai-chat-form" id="aiChatForm">
               <label class="sr-only" for="aiQuestion">Ask Guilin Way AI Guide</label>
               <input id="aiQuestion" name="question" maxlength="1200" placeholder="Ask about Guilin, Yangshuo, Li River..." autocomplete="off">
@@ -321,6 +323,28 @@
       <p>Guilin Way. The easiest way to explore Guilin.</p>
     </footer>
 
+    <div class="auth-modal-backdrop" id="authModal" hidden>
+      <div class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+        <button type="button" class="auth-modal-close" id="authModalClose" aria-label="Close">×</button>
+        <h3 id="authModalTitle">Sign in</h3>
+        <p class="auth-modal-sub" id="authModalSub">Welcome back.</p>
+        <form id="authForm">
+          <label>
+            Email
+            <input type="email" id="authEmail" required autocomplete="email">
+          </label>
+          <label>
+            Password
+            <input type="password" id="authPassword" required minlength="8" autocomplete="current-password">
+          </label>
+          <p class="auth-error" id="authError" hidden></p>
+          <button class="button primary" type="submit" id="authSubmit">Sign in</button>
+        </form>
+        <p class="auth-switch">New here? <button type="button" id="authSwitch">Create an account</button></p>
+      </div>
+    </div>
+
     <script src="script.js"></script>
+    <script src="script-auth.js"></script>
   </body>
 </html>

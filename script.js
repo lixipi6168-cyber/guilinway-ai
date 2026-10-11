@@ -91,6 +91,12 @@ aiChatForm?.addEventListener("submit", async (event) => {
       signal: controller.signal,
     });
     const payload = await response.json().catch(() => ({}));
+    updateQuota(payload);
+    if (response.status === 429) {
+      const limitError = new Error(payload.error || "rate_limited");
+      limitError.code = "limit_reached";
+      throw limitError;
+    }
     if (!response.ok || !payload.answer) {
       throw new Error(payload.error || "assistant_unavailable");
     }
@@ -98,17 +104,22 @@ aiChatForm?.addEventListener("submit", async (event) => {
     thinkingMessage.classList.remove("pending");
     trackEvent("ai_answer_received", { question_category: questionCategory });
   } catch (error) {
-    const failureType = error.name === "AbortError" ? "timeout" : "unavailable";
-    thinkingMessage.textContent =
-      error.name === "AbortError"
-        ? "The answer is taking too long. Please try again in a moment."
-        : "The AI guide is temporarily unavailable. Please try again shortly or email guilinway@gmail.com.";
-    thinkingMessage.classList.remove("pending");
-    thinkingMessage.classList.add("error");
-    trackEvent("ai_answer_failed", {
-      question_category: questionCategory,
-      failure_type: failureType,
-    });
+    if (error.code === "limit_reached") {
+      showLimitNudge(thinkingMessage);
+      trackEvent("ai_limit_reached");
+    } else {
+      const failureType = error.name === "AbortError" ? "timeout" : "unavailable";
+      thinkingMessage.textContent =
+        error.name === "AbortError"
+          ? "The answer is taking too long. Please try again in a moment."
+          : "The AI guide is temporarily unavailable. Please try again shortly or email guilinway@gmail.com.";
+      thinkingMessage.classList.remove("pending");
+      thinkingMessage.classList.add("error");
+      trackEvent("ai_answer_failed", {
+        question_category: questionCategory,
+        failure_type: failureType,
+      });
+    }
   } finally {
     window.clearTimeout(timeout);
     aiQuestionInput.disabled = false;
