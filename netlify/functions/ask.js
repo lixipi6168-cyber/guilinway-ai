@@ -41,11 +41,13 @@ exports.handler = async (event) => {
     event.headers["client-ip"] ||
     event.headers["x-forwarded-for"]?.split(",")[0]?.trim() ||
     "unknown";
+  const sessionToken =
+    (event.headers.cookie || "").match(/(?:^|;\s*)gw_session=([^;]+)/)?.[1] || "";
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
   try {
-    const requestBody = JSON.stringify({ message: message.trim() });
+    const requestBody = JSON.stringify({ message: message.trim(), session: sessionToken });
     const timestamp = Math.floor(Date.now() / 1000).toString();
     const signature = crypto
       .createHmac("sha256", relaySecret)
@@ -64,15 +66,25 @@ exports.handler = async (event) => {
     });
     const payload = await response.json().catch(() => ({}));
     if (!response.ok) {
+      if (response.status === 429) {
+        return jsonResponse(429, {
+          error: payload.error || "rate_limited",
+          limit: payload.limit,
+          plan: payload.plan,
+        });
+      }
       console.error("Hermes relay request failed", response.status, payload.error || "unknown");
-      return jsonResponse(response.status === 429 ? 429 : 502, {
-        error: response.status === 429 ? "rate_limited" : "assistant_unavailable",
-      });
+      return jsonResponse(502, { error: "assistant_unavailable" });
     }
     if (typeof payload.answer !== "string" || !payload.answer) {
       return jsonResponse(502, { error: "invalid_assistant_response" });
     }
-    return jsonResponse(200, { answer: payload.answer });
+    return jsonResponse(200, {
+      answer: payload.answer,
+      remaining: payload.remaining,
+      limit: payload.limit,
+      plan: payload.plan,
+    });
   } catch (error) {
     console.error("Hermes relay connection failed", error.name);
     return jsonResponse(504, { error: "assistant_timeout" });
